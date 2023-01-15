@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Tempo de Estudo</title>
+</head>
+<body>
+  <main>
+      <h1>Este é o Tempo de Estudo</h1>
+      <h2>Você precisa de estudar com música!</h2> 
+      <p>Ouvir música enquanto se estuda ajuda a melhorar a concentração e memória, aliviar o estresse e criar um ambiente de estudo agradável. Você pode escolher uma destas ou outra.</p>
+      <audio src="midia/dreams.mp3" controls loop></audio>
+      <audio src="midia/goinghigher.mp3" controls loop></audio>
+      <audio src="midia/slowmotion.mp3" controls loop></audio>
+      <audio src="midia/99719042.mp3" id="sino"></audio>
+      <h2>Crie uma lista:</h2>
+      <p>Estudar a partir de uma lista permite organização, facilidade de revisão, priorização de tópicos, melhora de memória e aumento de produtividade.</p>
+      <textarea name="List" id="list" cols="30" rows="10"></textarea>
+      <h2>Use o pomodoro timer:</h2>
+      <p>Usar o método Pomodoro é uma excelente forma de aumentar a produtividade, manter a concentração e organizar o tempo. Utilizando-o o cérebro é capaz de absorver e processar melhor a informação.</p>
+      <div id="pomodorotimer">
+          <div>
+            <p class="divp">Tempo de estudo: 25 min</p>
+            <p class="divp">Tempo de descanso: 5 min</p>
+            <p class="divp">Depois de 4 ciclos: pausa de 15 min</p>
+          </div>
+          <div id="temporizador">
+            <p id="falta"><button id="startTimer" onclick="startTimer()">Iniciar Temporizador</button></p>
+            <button id="pause" onclick="togglePause()">Pausar</button>
+          </div>
+    </div>
+    <h2>Melhor forma de estudar</h2>
+    <p>Estudar bem é fundamental para obter sucesso acadêmico e profissional. Porém, muitos estudantes enfrentam dificuldades na altura de estudar e acabam tendo baixo rendimento escolar. Para ajudar esses estudantes, seguem algumas dicas para estudar bem e alcançar sucesso nos estudos:</p>
+    <p>A primeira dica é estabelecer metas. Antes de começar a estudar, é importante estabelecer metas claras e alcançáveis. Isso ajuda a manter o foco e a motivação durante o estudo. Além disso, é importante estabelecer um cronograma de estudos, definindo dias e horários para estudar.</p>
+    <p>A segunda dica é criar um ambiente de estudo adequado. Ele deve ser limpo, organizado e calmo. É importante ter uma mesa e uma cadeira confortáveis, além de ter uma boa iluminação e ventilação. É importante também evitar distrações, como televisão, telemovel e internet.</p>
+    <p>A terceira dica é usar técnicas de estudo eficazes. Algumas das técnicas mais eficazes incluem a anotação, a sublinhação, a resumos e a memorização. É importante também usar mnemônicos e esquemas para ajudar a lembrar informações importantes.</p>
+    <p>A quarta dica é fazer pausas regulares. Estudar por longos períodos de tempo pode ser cansativo e desmotivador, é importante fazer pausas regulares para alongar-se, tomar um café ou ir à casa-de-banho. Isso ajuda a manter o foco e a atenção durante o estudo.</p>
+    <p>A quinta dica é fazer exercícios físicos regularmente. Fazer-los regularmente ajuda a melhorar a saúde física e mental, isso pode ajudar a aumentar a capacidade de concentração e a memória, além disso, fazer exercícios físicos pode ajudar a reduzir o estresse e a ansiedade.</p>
+    <p>A sexta dica é dormir bem. Dormir bem é fundamental para a saúde física e mental. É importante dormir pelo menos 8 horas por dia. Isso ajuda a melhorar a capacidade de concentração e a memória. Além disso, dormir bem pode ajudar a reduzir o estresse e a ansiedade.</p>
+    <p>As músicas são do Bensound!</p>
+    <br>
+
+  </main>
+  <script>
+    let timer
+    let isTimerStarted = false
+    let isPaused = false
+    var pausar = true
+    var estudo = 1500
+    var pausa = 900
+    var pausa_longa = 300
+    var ordem = [estudo, pausa, estudo, pausa, estudo, pausa, estudo, pausa_longa]
+
+    function togglePause() {
+    var button = document.getElementById("pause");
+    if (pausar) {
+        button.innerHTML = "Retomar";
+        clearInterval(timer);
+        pausar = false;
+    } else {
+        button.innerHTML = "Pausar";
+        startTimer();
+        pausar = true;
+    }
+}
+
+function startTimer() {
+    let i = 0;
+    if (!isTimerStarted) {
+        isTimerStarted = true;
+    }
+    timer = setInterval(() => {
+        if (ordem[i] !== 0 && pausar === true) {
+            let minutes = Math.floor(ordem[i] / 60);
+            let seconds = ordem[i] % 60;
+            document.getElementById("falta").innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`
+            if (ordem[i] === 1) {
+                document.getElementById("sino").play();
+            }
+            ordem[i]--;
+        } else {
+            i = (i + 1) % ordem.length;
+        }
+    }, 1000);
+}
+    //  Coming soon -->   var add = window.confirm("You want have adds in this site to help us? (OK to confirm and cancel to disable adds)")
+</script>
+</body>
+</html>
