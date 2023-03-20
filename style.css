@@ -2,13 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
+* {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background-color: #A1C7E0;
 }
 
 main {
-    min-width: 750px;
-    width: 70%;
+    max-width: 1500px;
     background-color: white;
     border-radius: 10px;
     text-align: center;
@@ -38,15 +42,7 @@ p {
     margin-right: 25px;
 }
 
-div {
-    display: inline;
-    color: white;
-    grid-column: 1 / 2;
-}
-
 #temporizador {
-    /* Adiciona a id #temporizador à segunda coluna */
-    grid-column: 2 / 3;
     flex: 1;
     display: flex;
     align-items: center;
@@ -54,10 +50,6 @@ div {
     font-size: 75px;
 }
 
-.divp {
-    color: white;
-    font-size: 25px;
-}
 
 
 textarea {
@@ -73,23 +65,17 @@ iframe {
 }
 
 div#pomodorotimer {
-    display: grid; /* Define o elemento como um grid */
-    grid-template-columns: 1fr 1fr; /* Divide o grid em duas colunas */
-    grid-gap: 10px; /* Adiciona um espaço entre as colunas */
-    background-color: #026E81;
-    border-radius: 10px;
     text-align: center;
-    width: 90%;
-    height: 250px;
-    border: 1px solid black;
+    color: #0099DD;
     margin: 10px;
 }
 
-
+div * {
+    display: block;
+}
 
 button {
     background-color: #FF9933;
-    font-size: 30px;
 }
 
 button:hover {
